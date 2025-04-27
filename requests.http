@@ -1,0 +1,6 @@
+### Create a new user with Indian name and email
+POST http://localhost:8080/create-user?name=Rahul%20Sharma&email=rahul.sharma@example.in
+Content-Type: application/x-www-form-urlencoded
+
+### Get user by ID (assuming the ID is 1)
+GET http://localhost:8080/user/1
