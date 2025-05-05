@@ -1,6 +1,29 @@
-### Create a new user with Indian name and email
-POST http://localhost:8080/create-user?name=Rahul%20Sharma&email=rahul.sharma@example.in
+### 1. Create user successfully
+POST http://localhost:8080/create-user
 Content-Type: application/x-www-form-urlencoded
 
-### Get user by ID (assuming the ID is 1)
+name=Alice&email=alice@example.com
+
+### 2. Create user with RuntimeException (should rollback)
+POST http://localhost:8080/create-user-error
+Content-Type: application/x-www-form-urlencoded
+
+name=Bob&email=bob@example.com
+
+### 3. Create user with CustomCheckedException (should rollback due to rollbackFor)
+POST http://localhost:8080/create-user-custom
+Content-Type: application/x-www-form-urlencoded
+
+name=Charlie&email=charlie@example.com
+
+### 4. Create user using REQUIRES_NEW transaction (committed independently)
+POST http://localhost:8080/create-user-new-tx
+Content-Type: application/x-www-form-urlencoded
+
+name=David&email=david@example.com
+
+### 5. Fetch user by ID (read-only transaction)
 GET http://localhost:8080/user/1
+
+### Get all users
+GET http://localhost:8080/users
